@@ -1,0 +1,247 @@
+/* ===== Global Styles ===== */
+body {
+  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  color: #333;
+}
+
+/* ===== App Container ===== */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ===== Title ===== */
+.title {
+  font-size: 2.4rem;
+  color: #1e293b;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Input Form ===== */
+.todo-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.todo-input,
+.todo-datetime {
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.todo-input {
+  width: 250px;
+}
+
+.todo-input:focus,
+.todo-datetime:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+}
+
+.add-btn {
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.3s ease;
+}
+
+.add-btn:hover {
+  background: linear-gradient(90deg, #1d4ed8, #2563eb);
+  transform: translateY(-2px);
+}
+
+/* ===== Todo List ===== */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 360px;
+}
+
+/* ===== Todo Item ===== */
+.todo-item {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.todo-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.todo-item span {
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.todo-item span.completed {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+
+/* ===== Todo Content & Date ===== */
+.todo-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.todo-date {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+/* ===== Delete Button ===== */
+.delete-btn {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+}
+
+/* ===== No Todos Message ===== */
+.no-todos {
+  color: #475569;
+  font-size: 1rem;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Google Connect Button ===== */
+.google-container {
+  margin-bottom: 20px;
+}
+
+.google-btn {
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335);
+  background-size: 300%;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: gradientShift 5s infinite linear;
+}
+
+.google-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(66, 133, 244, 0.3);
+}
+
+/* ===== Popup ===== */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-box {
+  background: white;
+  border-radius: 12px;
+  padding: 25px 30px;
+  text-align: center;
+  width: 320px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: popIn 0.3s ease-out;
+}
+
+.close-btn {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.close-btn:hover {
+  background-color: #dc2626;
+}
+
+/* ===== Animations ===== */
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 300%;
+  }
+}
