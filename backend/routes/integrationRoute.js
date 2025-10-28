@@ -55,5 +55,70 @@ route.post("/webhook", async (req, res) => {
     }
 });
 
+/**
+ * Step 3: Calandars List
+ */
+route.get("/calendar/list", async (req, res) => {
+  try {
+    const userId = req.query.userId; // Or from JWT
+    const providerConfigKey = "google-calendar";
+
+    // ✅ Fetch all calendars from Google API
+    const response = await nango.get({
+       connectionId: "8cb241a0-2b14-49e8-92c6-8420cd229023",
+      providerConfigKey: "google-calendar",
+      endpoint: "/calendar/v3/users/me/calendarList",
+    });
+
+    res.json(response.data.items);
+  } catch (error) {
+    console.error("❌ Error fetching calendars:", error.response?.data || error);
+    res.status(500).json({ error: "Failed to fetch calendars" });
+  }
+});
+
+/**
+ * Step 4: Get calandar events
+ */
+route.get("/calendar/events", async (req, res) => {
+  try {
+    const response = await nango.get({
+      connectionId: "8cb241a0-2b14-49e8-92c6-8420cd229023",
+      providerConfigKey: "google-calendar",
+      endpoint: "/calendar/v3/calendars/primary/events"
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error("❌ Error fetching events:", error.response?.data || error);
+    res.status(500).json({ error: "Failed to fetch events" });
+  }
+});
+
+/**
+ * Step 5: Add calandar events
+ */
+route.post("/calendar/event", async (req, res) => {
+  try {
+    const eventBody = {
+      summary: "Team Sync",
+      description: "Weekly check-in meeting",
+      start: { dateTime: "2025-10-29T10:00:00+05:30" },
+      end: { dateTime: "2025-10-29T11:00:00+05:30" },
+    };
+
+    const response = await nango.post({
+      connectionId: "8cb241a0-2b14-49e8-92c6-8420cd229023",
+      providerConfigKey: "google-calendar",
+      endpoint: "/calendar/v3/calendars/primary/events",
+      data: eventBody
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error("❌ Error creating event:", error.response?.data || error);
+    res.status(500).json({ error: "Failed to create event" });
+  }
+});
 
 export default route;
